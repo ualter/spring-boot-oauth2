@@ -1,3 +1,4 @@
+
 facebook:
   client:
     clientId: 233668646673605
@@ -19,3 +20,16 @@ github:
     clientAuthenticationScheme: form
   resource:
     userInfoUri: https://api.github.com/user
+    
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      scope: read,write
+      auto-approve-scopes: '.*'    
+      
+spring:
+  security:
+      user:
+         password: 1234     

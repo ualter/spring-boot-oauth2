@@ -19,12 +19,10 @@ public class OauthSsoFacebookController {
 	OAuth2ClientContext oauth2ClientContext;
 
 	@RequestMapping({ "/user", "/me" })
-	public Map<String, String> user(Principal principal) {
+	public Principal user(Principal principal) {
 		String msg = String.format("User:%s, Access_Token:%s", principal.getName(),oauth2ClientContext.getAccessToken());
 		log.info(msg);
-		Map<String, String> map = new LinkedHashMap<>();
-		map.put("name", principal.getName());
-		return map;
+		return principal;
 	}
 
 }

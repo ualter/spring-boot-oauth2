@@ -23,7 +23,10 @@
 	    Log with Github: <a href="/login/github"><i class="fa fa-github"></i> Click Here</a>
 	</div>
 	<div class="container authenticated" style="display:none">
-	    Logged in as: <span id="user"></span>
+		<div class="facebook" style="display:none"><i class="fa fa-facebook-square" aria-hidden="true" style="font-size:53px;color:#4267b2;"></i></div>
+		<div class="github" style="display:none"><i class="fa fa-github" aria-hidden="true"style="font-size:53px;color:#404040;"></i></div>
+	    <b><i>Logged in as:</i></b>&nbsp;<span id="user"></span>
+	    <br><br>
 	    <div>
 	      <button onClick="logout()" class="btn btn-primary">Logout</button>
 	    </div>
@@ -34,8 +37,15 @@
 
     $.get("/user", function(data) {
         $("#user").html(data.userAuthentication.details.name);
-        $(".unauthenticated").hide()
-        $(".authenticated").show()
+        $(".unauthenticated").hide();
+        $(".authenticated").show();
+        
+        if ( data.oauth2Request.clientId == "233668646673605" ) {
+        	$(".facebook").show();
+        } else 
+        if ( data.oauth2Request.clientId == "bd1c0a783ccdd1c9b9e4" ) {
+        	$(".github").show();
+        }
     });
     
     var logout = function() {

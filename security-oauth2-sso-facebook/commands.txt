@@ -1,3 +1,3 @@
 curl acme:acmesecret@localhost:8080/oauth/token -d grant_type=client_credentials
 
-curl acme:acmesecret@localhost:8080/oauth/token -d grant_type=password -d username=user -d password=a5dbbfb7-d5d7-4605-8926-b88d793e9ea7
+curl acme:acmesecret@localhost:8080/oauth/token -d grant_type=password -d username=user -d password=2ddfad57-c8f2-4695-bbe8-7a056d25219d

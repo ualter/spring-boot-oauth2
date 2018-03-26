@@ -22,6 +22,9 @@
 	<div class="container unauthenticated">
 	    Log with Github: <a href="/login/github"><i class="fa fa-github"></i> Click Here</a>
 	</div>
+	<div class="container text-danger error" style="display:none">
+	There was an error (bad credentials).
+	</div>
 	<div class="container authenticated" style="display:none">
 		<div class="facebook" style="display:none"><i class="fa fa-facebook-square" aria-hidden="true" style="font-size:53px;color:#4267b2;"></i></div>
 		<div class="github" style="display:none"><i class="fa fa-github" aria-hidden="true"style="font-size:53px;color:#404040;"></i></div>
@@ -36,16 +39,22 @@
 <script type="text/javascript">
 
     $.get("/user", function(data) {
-        $("#user").html(data.userAuthentication.details.name);
-        $(".unauthenticated").hide();
-        $(".authenticated").show();
-        
-        if ( data.oauth2Request.clientId == "233668646673605" ) {
-        	$(".facebook").show();
-        } else 
-        if ( data.oauth2Request.clientId == "bd1c0a783ccdd1c9b9e4" ) {
-        	$(".github").show();
-        }
+    	if ( data.userAuthentication !== undefined ) {
+	        $("#user").html(data.userAuthentication.details.name);
+	        $(".unauthenticated").hide();
+	        $(".authenticated").show();
+	        
+	        if ( data.oauth2Request.clientId == "233668646673605" ) {
+	        	$(".facebook").show();
+	        } else 
+	        if ( data.oauth2Request.clientId == "bd1c0a783ccdd1c9b9e4" ) {
+	        	$(".github").show();
+	        }
+    	}
+    	
+    	if (location.href.indexOf("error=true")>=0) {
+   	      $(".error").show();
+   	    }
     });
     
     var logout = function() {

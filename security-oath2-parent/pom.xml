@@ -80,8 +80,8 @@
 	</dependencies>
 	
 	<modules>
-		<module>security-oauth2-sso.facebook</module>
-		<module>security-oath2-client</module>
+		<module>../security-oauth2-sso-facebook</module>
+		<module>../security-oath2-client</module>
 	</modules>
 
 	<build>

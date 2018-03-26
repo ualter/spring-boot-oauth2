@@ -1,8 +1,6 @@
 package com.security.oath2.sso.facebook.controller;
 
 import java.security.Principal;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -21,6 +19,13 @@ public class OauthSsoFacebookController {
 	@RequestMapping({ "/user" })
 	public Principal user(Principal principal) {
 		String msg = String.format("User:%s, Access_Token:%s", principal.getName(),oauth2ClientContext.getAccessToken());
+		log.info(msg);
+		return principal;
+	}
+	
+	@RequestMapping({ "/userInfo" })
+	public Principal userInfo(Principal principal) {
+		String msg = String.format("UserInfo:%s, Access_Token:%s", principal.getName(),oauth2ClientContext.getAccessToken());
 		log.info(msg);
 		return principal;
 	}

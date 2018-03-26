@@ -112,7 +112,7 @@ public class OauthSsoFacebook extends WebSecurityConfigurerAdapter {
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
 			http
-				.antMatcher("/user")
+				.antMatcher("/userInfo")
 					.authorizeRequests()
 				.anyRequest()
 					.authenticated();

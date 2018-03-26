@@ -18,7 +18,7 @@ public class OauthSsoFacebookController {
 	@Autowired
 	OAuth2ClientContext oauth2ClientContext;
 
-	@RequestMapping({ "/user", "/me" })
+	@RequestMapping({ "/user" })
 	public Principal user(Principal principal) {
 		String msg = String.format("User:%s, Access_Token:%s", principal.getName(),oauth2ClientContext.getAccessToken());
 		log.info(msg);

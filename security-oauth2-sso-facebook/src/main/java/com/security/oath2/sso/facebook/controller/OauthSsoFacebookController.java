@@ -1,16 +1,14 @@
 package com.security.oath2.sso.facebook.controller;
 
-import java.security.Principal;
-
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class OauthSsoFacebookController {
 
-	@RequestMapping("/user")
-	public Principal user(Principal principal) {
-		return principal;
+	@RequestMapping("/unauthenticated")
+	public String unauthenticated() {
+		return "redirect:/?error=true";
 	}
 
 }

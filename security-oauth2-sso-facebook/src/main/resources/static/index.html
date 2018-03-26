@@ -17,7 +17,10 @@
 	<h1>Demo</h1>
 	<div class="container"></div>
 	<div class="container unauthenticated">
-    	Log with Facebook: <a href="/login"><i class="fa fa-facebook"></i> Click Here</a>
+    	Log with: <a href="/login"><i class="fa fa-github"></i> Click Here</a>
+	</div>
+	<div class="container text-danger error" style="display:none">
+	  There was an error (bad credentials).
 	</div>
 	<div class="container authenticated" style="display:none">
 	    Logged in as: <span id="user"></span>
@@ -28,12 +31,23 @@
 </body>
 
 <script type="text/javascript">
-
-    $.get("/user", function(data) {
-        $("#user").html(data.userAuthentication.details.name);
-        $(".unauthenticated").hide()
-        $(".authenticated").show()
-    });
+	
+	$.ajax({
+	  url : "/user",
+	  success : function(data) {
+	    $(".unauthenticated").hide();
+	    $("#user").html(data.userAuthentication.details.name);
+	    $(".authenticated").show();
+	  },
+	  error : function(data) {
+	    $("#user").html('');
+	    $(".unauthenticated").show();
+	    $(".authenticated").hide();
+	    if (location.href.indexOf("error=true")>=0) {
+	      $(".error").show();
+	    }
+	  }
+	})
     
     var logout = function() {
         $.post("/logout", function() {

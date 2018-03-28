@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.security.oath2.resource.server.dto.Foo;
 
-//@Controller
+@Controller
 public class FooController {
 
 	@PreAuthorize("#oauth2.hasScope('read')")

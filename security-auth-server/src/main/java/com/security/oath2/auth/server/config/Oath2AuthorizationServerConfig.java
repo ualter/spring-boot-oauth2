@@ -60,10 +60,11 @@ public class Oath2AuthorizationServerConfig extends AuthorizationServerConfigure
 //	    		.scopes("read")
 //	    		.autoApprove(true)
 //    		.and()
-    		.withClient("clientIdPassword")
-	    		.secret("secret")
-	    		.authorizedGrantTypes("password","authorization_code","refresh_token")
-	    		.scopes("read");
+//    		.withClient("clientIdPassword")
+//	    		.secret("secret")
+//	    		.authorizedGrantTypes("password","authorization_code","refresh_token")
+//	    		.scopes("read")
+    		;
     	//@formatter:on
 	}
 

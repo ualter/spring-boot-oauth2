@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.2.RELEASE</version>
+		<version>1.5.10.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -82,7 +82,7 @@
 	<modules>
 		<module>../security-oauth2-sso-facebook</module>
 		<module>../security-oath2-client</module>
-		<module>../security-auth-server</module>
+		<module>../security-authorization-server</module>
 	</modules>
 
 	<build>

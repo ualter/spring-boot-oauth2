@@ -1,0 +1,36 @@
+server:
+   contextPath: "/resource"
+   port: 8082
+   
+logging:
+  level:
+    org.springframework.security: DEBUG
+    
+configuration:
+  securityserver:
+    scheme: http
+    host: localhost
+    discoveryHost: localhost
+    port: ${server.port}       
+
+security:
+  ignored:
+    - /**/webjars/**"
+    - /**/images/**
+    - /**/static/**
+    - /**/swagger-ui.html
+    - /**/swagger-resources
+    - /**/configuration/**
+    - /**/v2/api-docs
+    - /proxy.stream    
+  oauth2:   
+    client:
+      accessTokenUri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/token
+      userAuthorizationUri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/authorize
+      client-id: clientIdPassword
+      client-secret: secret
+    resource:
+      user-info-uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/user/details
+      token-info-uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/check_token
+    #revoke:
+    #  uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/private/oauth/revoke-token       

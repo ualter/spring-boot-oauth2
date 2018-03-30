@@ -1,4 +1,4 @@
-package com.security.oath2.sso.facebook.controller;
+package com.security.oauth2.sso.facebook.controller;
 
 import java.security.Principal;
 

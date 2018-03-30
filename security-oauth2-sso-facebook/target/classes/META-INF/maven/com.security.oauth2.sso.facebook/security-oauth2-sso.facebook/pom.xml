@@ -11,10 +11,10 @@
 	<url>http://maven.apache.org</url>
 
 	<parent>
-		<groupId>com.security.oath2</groupId>
-		<artifactId>security-oath2-parent</artifactId>
+		<groupId>com.security.oauth2</groupId>
+		<artifactId>security-oauth2-parent</artifactId>
 		<version>${global.version}</version>
-		<relativePath>../security-oath2-parent/pom.xml</relativePath>
+		<relativePath>../security-oauth2-parent/pom.xml</relativePath>
 	</parent>
 
 	<properties>

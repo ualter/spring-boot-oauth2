@@ -1,4 +1,4 @@
-package com.security.oath2.sso.facebook;
+package com.security.oauth2.sso.facebook;
 
 import java.util.ArrayList;
 import java.util.List;

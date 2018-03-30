@@ -1,4 +1,4 @@
-package com.security.oath2.sso.facebook;
+package com.security.oauth2.sso.facebook;
 
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

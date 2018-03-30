@@ -1,0 +1,26 @@
+
+
+########################################################################
+# Grant Type Password --> Resource Owner Password Credentials(RFC-6749)
+
+ ** Get the Access Token (Client: clientIdPassword, User: John)
+ # Client (Basic Authentication): Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=  (Base64 of: clientIdPassword:secret)
+ # User: john:123
+ curl -d "grant_type=password&username=john&password=123&client_secret=secret&scope=read&client_id=clientIdPassword" -H "Content-Type: application/x-www-form-urlencoded;charset=utf-8" -H "Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=" -X POST http://localhost:8081/oauth-server/oauth/token | jq .
+
+ ** Check Access Token Granted
+ curl -X POST  --header "Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=" -d "token=dbe3d2c4-cb19-4ee5-b1bd-31666bb7e07d" http://localhost:8081/oauth-server/oauth/check_token | jq .
+
+ ** Access the Resource with the Access Token given
+ curl --data "id=1" -X POST   http://localhost:8082/resource/foos   -H 'Authorization: Bearer dbe3d2c4-cb19-4ee5-b1bd-31666bb7e07d' | jq . 
+
+######################################################################## 
+
+  
+  
+  
+curl --header "Authorization: Basic am9objoxMjM=" http://localhost:8081/oauth-server/foos/1 | jq .
+curl --header "Authorization: Basic am9objoxMjM=" --header "Authorization: Bearer d2696453-5464-4f16-b96b-8ed98c4945a8" http://localhost:8081/oauth-server/foos/1
+curl -I --header "Authorization: Bearer d2696453-5464-4f16-b96b-8ed98c4945a8" http://localhost:8081/oauth-server/foos/1
+
+curl -I  http://localhost:8081/oauth-server/foos/1

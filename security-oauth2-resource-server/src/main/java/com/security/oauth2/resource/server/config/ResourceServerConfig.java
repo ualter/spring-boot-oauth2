@@ -14,14 +14,14 @@ import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 
-    @Value("${security.oauth2.resource.token-info-uri}")
-    private String checkTokenUri;
-
-    @Value("${security.oauth2.client.client-id}")
-    private String clientId;
-
-    @Value("${security.oauth2.client.client-secret}")
-    private String clientSecret;
+//    @Value("${security.oauth2.resource.token-info-uri}")
+//    private String checkTokenUri;
+//
+//    @Value("${security.oauth2.client.client-id}")
+//    private String clientId;
+//
+//    @Value("${security.oauth2.client.client-secret}")
+//    private String clientSecret;
     
 
 	@Override
@@ -36,16 +36,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	}
 	
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.tokenServices(remoteTokenServices()).resourceId("RESOURCE_ID").stateless(true);
+		//@formatter:off
+        resources
+        	//.tokenServices(remoteTokenServices())
+        	.resourceId("RESOURCE_ID")
+        	.stateless(true);
+      //@formatter:on
     }
 	
-	@Bean
-    public RemoteTokenServices remoteTokenServices() {
-        final RemoteTokenServices tokenServices = new RemoteTokenServices();
-        tokenServices.setCheckTokenEndpointUrl(checkTokenUri);
-        tokenServices.setClientId(clientId);
-        tokenServices.setClientSecret(clientSecret);
-        return tokenServices;
-    }
+//	@Bean
+//    public RemoteTokenServices remoteTokenServices() {
+//        final RemoteTokenServices tokenServices = new RemoteTokenServices();
+//        tokenServices.setCheckTokenEndpointUrl(checkTokenUri);
+//        tokenServices.setClientId(clientId);
+//        tokenServices.setClientSecret(clientSecret);
+//        return tokenServices;
+//    }
 
 }

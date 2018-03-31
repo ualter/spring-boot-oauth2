@@ -13,6 +13,7 @@ LGRAY='\033[0;37m'
 LRED='\033[1;31m'
 BOLD='\e[1m'
 BLINK='\e[5m'
+NOT_BLINK='\e[25m'
 
 authorizationServer=http://localhost:8081/oauth-server
 resourceServer=http://localhost:8082/resource
@@ -26,9 +27,6 @@ echo -e "${HEADER}##############################################################
 echo -e "### -----> (1)  ${WHITE}Retrieve the Access Token from Authorization Server: ${LGRAY}$authorizationServer/oauth/token${HEADER}"
 echo -e "######################################################################################################################################${NC}"
 jsonTokenAccess="$(curl -s -d 'grant_type=password&username=john&password=123&client_secret=secret&scope=read&client_id=clientIdPassword' -H 'Content-Type: application/x-www-form-urlencoded;charset=utf-8' -H 'Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=' -X POST $authorizationServer/oauth/token)"
-if [  show ]; then
-	echo -e " Command: ${LRED}curl -s -d 'grant_type=password&username=john&password=123&client_secret=secret&scope=read&client_id=clientIdPassword' -H 'Content-Type: application/x-www-form-urlencoded;charset=utf-8' -H 'Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=' -X POST $authorizationServer/oauth/token"
-fi
 if (( $? > 0 )); then
 	echo " "
 	echo "<<**********************************************************************************"
@@ -38,6 +36,9 @@ if (( $? > 0 )); then
 	echo " "
 	exit 113;
 fi
+if [  show ]; then
+	echo -e " Command: ${LRED}curl -s -d 'grant_type=password&username=john&password=123&client_secret=secret&scope=read&client_id=clientIdPassword' -H 'Content-Type: application/x-www-form-urlencoded;charset=utf-8' -H 'Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=' -X POST $authorizationServer/oauth/token"
+fi
 echo -e "${HEADER}### -----> ${WHITE}Response:${NC}"
 echo -e "${LBLUE}"
 echo $jsonTokenAccess | jq .
@@ -45,6 +46,9 @@ echo ""
 echo -e "${HEADER}### -----> ${WHITE}Access Token \"extracted\":${NC}"
 tokenAccess="$(echo $jsonTokenAccess | jq values.access_token | tr -d '"' )" #'
 echo -e "${LGREEN}$tokenAccess${NC}"
+echo -e "${HEADER}###############"
+echo -e "### ${LGREEN}${BLINK}(1) Finish${NC}${NOT_BLINK}"
+echo -e "${HEADER}###############${NC}"
 
 echo ""
 echo ""
@@ -53,9 +57,6 @@ echo -e "${HEADER}##############################################################
 echo -e "### -----> (2) ${WHITE}Check Granted Access Token at the Authorization Server: ${LGRAY}$authorizationServer/oauth/check_token${HEADER}"
 echo -e "######################################################################################################################################${NC}"
 jsonCheck="$(curl -s -X POST  --header 'Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=' -d ''token=$tokenAccess'' $authorizationServer/oauth/check_token)"
-if [  show ]; then
-	echo -e " Command: ${LRED}curl -s -X POST  --header 'Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=' -d 'token="$tokenAccess"' $authorizationServer/oauth/check_token"
-fi
 if (( $? > 0 )); then
 	echo " "
 	echo "<<**********************************************************************************"
@@ -65,9 +66,15 @@ if (( $? > 0 )); then
 	echo " "
 	exit 113;
 fi
+if [  show ]; then
+	echo -e " Command: ${LRED}curl -s -X POST  --header 'Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=' -d 'token="$tokenAccess"' $authorizationServer/oauth/check_token"
+fi
 echo -e "${HEADER}### -----> ${WHITE}Response:${NC}"
 echo -e "${LBLUE}"
 echo $jsonCheck | jq .
+echo -e "${HEADER}###############"
+echo -e "### ${LGREEN}${BLINK}(2) Finish${NC}${NOT_BLINK}"
+echo -e "${HEADER}###############${NC}"
 
 echo ""
 echo ""
@@ -76,9 +83,6 @@ echo -e "${HEADER}##############################################################
 echo -e "### -----> (3) ${WHITE}Using it with the Resource Server ${LGRAY}${resourceServer}/foos${WHITE} Token: ${LGREEN}$tokenAccess${HEADER}"
 echo -e "######################################################################################################################################${NC}"
 dataResult="$(curl -s --data 'id=1' -X POST ${resourceServer}/foos -H 'Authorization: Bearer '$tokenAccess'')"
-if [  show ]; then
-	echo -e " Command: ${LRED}curl -s --data 'id=1' -X POST ${resourceServer}/foos -H 'Authorization: Bearer $tokenAccess'"
-fi
 if (( $? > 0 )); then
 	echo " "
 	echo "<<**********************************************************************************"
@@ -88,9 +92,15 @@ if (( $? > 0 )); then
 	echo " "
 	exit 113;
 fi
+if [  show ]; then
+	echo -e " Command: ${LRED}curl -s --data 'id=1' -X POST ${resourceServer}/foos -H 'Authorization: Bearer $tokenAccess'"
+fi
 echo -e "${HEADER}### -----> ${WHITE}Response:${NC}"
 echo -e "${LBLUE}"
 echo $dataResult | jq .
+echo -e "${HEADER}###############"
+echo -e "### ${LGREEN}${BLINK}(3) Finish${NC}${NOT_BLINK}"
+echo -e "${HEADER}###############${NC}"
 
 echo ""
 echo ""

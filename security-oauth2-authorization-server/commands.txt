@@ -18,9 +18,4 @@
 
   
   
-  
-curl --header "Authorization: Basic am9objoxMjM=" http://localhost:8081/oauth-server/foos/1 | jq .
-curl --header "Authorization: Basic am9objoxMjM=" --header "Authorization: Bearer d2696453-5464-4f16-b96b-8ed98c4945a8" http://localhost:8081/oauth-server/foos/1
-curl -I --header "Authorization: Bearer d2696453-5464-4f16-b96b-8ed98c4945a8" http://localhost:8081/oauth-server/foos/1
 
-curl -I  http://localhost:8081/oauth-server/foos/1

@@ -37,5 +37,5 @@ echo -e "${HEADER}##############################################################
 echo -e "### -----> ${WHITE}Wait... launching the tests for ${LBLUE}security-oath2 ${WHITE}collection${HEADER}"
 echo -e "######################################################################################################################################${NC}"
 
-newman run "https://api.getpostman.com/collections/$uidCollection?apikey=$keyAPI" --environment "https://api.getpostman.com/environments/$uidDevEnv?apikey=$keyAPI" --color 
+newman run "https://api.getpostman.com/collections/$uidCollection?apikey=$keyAPI" --environment "https://api.getpostman.com/environments/$uidDevEnv?apikey=$keyAPI" "$2" 
 #--reporter-cli-no-summary

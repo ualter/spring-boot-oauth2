@@ -54,10 +54,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	
-//	public void s() {
-//		OAuth2ClientAuthenticationProcessingFilter filter = new OAuth2ClientAuthenticationProcessingFilter(""); 
-//	}
-	
 //	@Bean
 //	public DaoAuthenticationProvider authenticationProvider() {
 //	    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();

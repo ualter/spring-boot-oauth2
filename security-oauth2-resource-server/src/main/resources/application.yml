@@ -27,8 +27,8 @@ security:
     client:
 #      accessTokenUri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/token
 #      userAuthorizationUri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/authorize
-      client-id: clientIdPassword
-      client-secret: secret
+      client-id: microshark
+      client-secret: 3opm8b
     resource:
 #      user-info-uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/user/details
       #token-info-uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/check_token

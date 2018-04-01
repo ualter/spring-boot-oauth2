@@ -17,5 +17,9 @@
 ######################################################################## 
 
   
+
+Check jwt:  
+http://www.baeldung.com/spring-security-oauth-jwt
+  
   
 

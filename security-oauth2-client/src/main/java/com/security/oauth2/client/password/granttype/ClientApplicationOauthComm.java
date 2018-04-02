@@ -1,4 +1,4 @@
-package com.security.oauth2.client;
+package com.security.oauth2.client.password.granttype;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +9,8 @@ import org.springframework.security.oauth2.client.token.grant.client.ClientCrede
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.web.client.RestTemplate;
 
-@Configuration
-@EnableOAuth2Client
+//@Configuration
+//@EnableOAuth2Client
 public class ClientApplicationOauthComm {
 
 	@Value("${OAuth2ClientId}")

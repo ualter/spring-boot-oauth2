@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Service
+//@Service
 public class DatabaseUserDetailsService implements UserDetailsService {
 
 	// @Autowired

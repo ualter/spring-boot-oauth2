@@ -1,4 +1,4 @@
-package com.security.oauth2.client;
+package com.security.oauth2.client.sso.social.networking;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;

@@ -1,4 +1,4 @@
-package com.security.oauth2.client;
+package com.security.oauth2.client.sso.social.networking;
 
 import java.security.Principal;
 

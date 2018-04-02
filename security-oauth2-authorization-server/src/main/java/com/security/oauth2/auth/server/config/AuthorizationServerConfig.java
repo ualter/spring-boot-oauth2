@@ -24,8 +24,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 @Configuration
-@PropertySource("classpath:persistence.properties")
 @EnableAuthorizationServer
+@PropertySource("classpath:persistence.properties")
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
 	@Autowired
@@ -58,11 +58,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     	clients
     		.jdbc(dataSource())                     // Load OAuth Client from Database 
     		/*
-    		.withClient("sampleClientId")           // Load OAuth Client InMemory
-	    		.authorizedGrantTypes("implicit")
-	    		.scopes("read")
-	    		.autoApprove(true)
-    		.and()
     		.withClient("clientIdPassword")         // Load OAuth Client InMemory
 	    		.secret("secret")
 	    		.authorizedGrantTypes("password","authorization_code","refresh_token")

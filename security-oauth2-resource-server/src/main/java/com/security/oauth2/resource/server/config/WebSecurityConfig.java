@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -20,14 +20,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		//@formatter:off
-		
-		// In case the users were in a Database (see DatabaseUserDetailsService)
-		// auth.authenticationProvider(authenticationProvider());  
-		
-		auth
+		/* Not necessary, we are using Oauth2 Tokens given by the Authorization Server
+		 auth
 			.inMemoryAuthentication()
-				.withUser("john").password("123").roles("USER");
-		
+				.withUser("john").password("123").roles("USER");*/
 		//@formatter:on
 	}
 	

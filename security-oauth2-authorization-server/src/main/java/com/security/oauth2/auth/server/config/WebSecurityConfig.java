@@ -12,6 +12,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// In case the users were in a Database (see DatabaseUserDetailsService)
+		// auth.authenticationProvider(authenticationProvider());  
 		//@formatter:off
 		auth
 			.inMemoryAuthentication()

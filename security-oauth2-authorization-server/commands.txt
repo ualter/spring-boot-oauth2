@@ -1,18 +1,52 @@
+################################################################################################################################################
+# Using the Postman Runner Command Line (npm packager install needs) see: https://www.npmjs.com/package/newman
+# Access the Cloud API Postman account: https://web.postman.co/collections
+
+# Get the Collections with your ApiKey (see: https://web.postman.co/integrations/services/pm_pro_api/configured?workspace=20f750c3-1a96-4902-8931-908eb334a1f6)
+curl -s --request GET   --url https://api.getpostman.com/collections   --header 'X-Api-Key: ?'
+
+# Execute newman syntax
+newman run "https://api.getpostman.com/collections/$uid?apikey=$apiKey" \
+    --environment "https://api.getpostman.com/environments/$uid?apikey=$apiKey"
+
+# So...
+newman run "https://api.getpostman.com/collections/1366272-f8713662-c1b1-4a44-afd5-3d3875dc13cc?apikey=?" \
+    --environment "https://api.getpostman.com/environments/1366272-bb4bfe6f-43bb-4ffc-85c8-39a3bbbde5f0?apikey=?"
+    
+Check security-oauth2-tests2 project        
+    
+
+################################################################################################################################################
 
 
-########################################################################
+
+################################################################################################################################################
 # Grant Type Password --> Resource Owner Password Credentials(RFC-6749)
 
  ** Get the Access Token (Client: clientIdPassword, User: John)
  # Client (Basic Authentication): Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=  (Base64 of: clientIdPassword:secret)
  # User: john:123
- curl -d "grant_type=password&username=john&password=123&client_secret=secret&scope=read&client_id=clientIdPassword" -H "Content-Type: application/x-www-form-urlencoded;charset=utf-8" -H "Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=" -X POST http://localhost:8081/oauth-server/oauth/token | jq .
+ curl -s -X POST \
+  http://localhost:8081/oauth-server/oauth/token \
+  -H 'Authorization: Basic bWljcm9zaGFyazozb3BtOGI=' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=password&username=john&password=123&client_secret=3opm8b&scope=read&client_id=microshark' | jq .
 
  ** Check Access Token Granted
- curl -X POST  --header "Authorization: Basic Y2xpZW50SWRQYXNzd29yZDpzZWNyZXQ=" -d "token=dbe3d2c4-cb19-4ee5-b1bd-31666bb7e07d" http://localhost:8081/oauth-server/oauth/check_token | jq .
+curl -s -X POST \
+  http://localhost:8081/oauth-server/oauth/check_token \
+  -H 'Authorization: Basic bWljcm9zaGFyazozb3BtOGI=' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'token=8e65ab9b-55ab-4a4a-aa8f-3aa1fdc3b7bf' | jq .
 
  ** Access the Resource with the Access Token given
- curl --data "id=1" -X POST   http://localhost:8082/resource/foos   -H 'Authorization: Bearer dbe3d2c4-cb19-4ee5-b1bd-31666bb7e07d' | jq . 
+curl -s -X POST \
+  http://localhost:8082/resource/city/list \
+  -H 'Authorization: Bearer 8e65ab9b-55ab-4a4a-aa8f-3aa1fdc3b7bf' \
+  -H 'Cache-Control: no-cache' \
+  -F id=1 | jq . 
 
 ######################################################################## 
 

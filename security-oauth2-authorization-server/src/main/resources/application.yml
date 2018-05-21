@@ -2,6 +2,11 @@ server:
    contextPath: "/oauth-server"
    port: 8081
 
+# For local unit test only
+oauth:
+   baseUrl: "http://localhost:${server.port}"
+   token: "${oauth.baseUrl}${server.contextPath}/oauth/token"
+
 logging:
   level:
     org.springframework.security: DEBUG

@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 //@Configuration
 //@EnableOAuth2Client
-public class ClientApplicationOauthComm {
+public class ClientApplicationOauthClientCredentials {
 
 	@Value("${OAuth2ClientId}")
 	private String oAuth2ClientId;

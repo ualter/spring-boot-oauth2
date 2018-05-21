@@ -66,7 +66,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     		;
     	//@formatter:on
 	}
-
+	
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		//@formatter:off

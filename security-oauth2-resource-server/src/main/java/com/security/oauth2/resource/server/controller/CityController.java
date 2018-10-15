@@ -1,5 +1,6 @@
 package com.security.oauth2.resource.server.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +17,11 @@ import com.security.oauth2.resource.server.dto.City;
 @Controller
 @RequestMapping(value = "/city/")
 public class CityController {
-		
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/{id}")
 	@ResponseBody
-	public City findCityById(@PathVariable Integer id) {
+	public City findCityById(@PathVariable Integer id, Principal principal) {
+		System.out.println(principal.getName());
 		//@formatter:off
 		Optional<City> city =
 				CityRepositoryMock.db()
@@ -30,6 +32,11 @@ public class CityController {
 					.findFirst();
 		//@formatter:on
 		return city.orElse(null);
+	}
+	
+	@RequestMapping("/user/details")
+	public Principal user(Principal principal) {
+		return principal;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/name/{name}")

@@ -17,7 +17,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//@formatter:off
 		auth
 			.inMemoryAuthentication()
-				.withUser("john").password("123").roles("USER");
+				.withUser("john").password("123").roles("USER")
+			.and()
+				.withUser("mary").password("456").roles("USER")
+		;
 		//@formatter:on
 	}
 
@@ -34,12 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.antMatcher("/**")
 				.authorizeRequests()
-			.antMatchers("/login","/webjars/**")
+			.antMatchers("/login","/webjars/**","/user/details")
 				.permitAll()
  			.anyRequest()
  				.authenticated()
 			.and()
 				.formLogin().permitAll()
+			.and()
+				.csrf().ignoringAntMatchers("/user/details")
 			//.and()
 			//	.httpBasic()
 			;

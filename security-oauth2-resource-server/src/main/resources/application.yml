@@ -22,16 +22,18 @@ security:
 #    - /**/swagger-resources
 #    - /**/configuration/**
 #    - /**/v2/api-docs
-#    - /proxy.stream    
+#    - /proxy.stream
+  user:
+    name: guest
+    password: guest123     
   oauth2:   
     client:
-#      accessTokenUri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/token
-#      userAuthorizationUri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/authorize
-      client-id: microshark
-      client-secret: 3opm8b
+      accessTokenUri: http://localhost:8081/oauth-server/oauth/token
+      userAuthorizationUri: http://localhost:8081/oauth-server/oauth/authorize
+      #client-id: microshark
+      #client-secret: 3opm8b
+      client-id: yostark
+      client-secret: jep817
     resource:
-#      user-info-uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/user/details
-      #token-info-uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/oauth/check_token
+      user-info-uri:  http://localhost:8081/oauth-server/user/details
       token-info-uri: http://localhost:8081/oauth-server/oauth/check_token
-#    #revoke:
-#    #  uri: http://${configuration.securityserver.host}:${configuration.securityserver.port}/oauth-server/private/oauth/revoke-token       

@@ -45,10 +45,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		//@formatter:off
 		oauthServer
+		    //.checkTokenAccess("permitAll()")
 			.tokenKeyAccess("permitAll()")
-			.checkTokenAccess("isAuthenticated()");
-			//.checkTokenAccess("permitAll()")
-			;
+			.checkTokenAccess("isAuthenticated()")
+		;
 		//@formatter:on
 	}
 
